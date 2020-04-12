@@ -5,6 +5,11 @@
 	import Alert from "./Alert.svelte";
 	
 
+	// ATTRIBUT DOES NOT ALLOW - OR _ OR UPPER CASE	
+	export let setposition="bottom-left";
+	export let newalert;
+
+
 	let position="bottom-left";
 
 	let availPos = [
@@ -23,6 +28,11 @@
 	let posLeft = false;
 	let posRight = false;
 
+
+	$:if(setPosition)setPosition(setposition); 
+	$:if(newalert)newAlert(newalert);
+
+
 	updatePositionClass();
 	function updatePositionClass() {
 		const [pos1, pos2] = position.split("-");
@@ -40,14 +50,19 @@
 	}
 
 	export const newAlert = (data={}) => {
+		if(typeof data === "string") {
+			data = JSON.parse(data);
+			newalert=""; // remove the attribute from html
+		} 
 		const { message, position:pos } = data; //position
-		console.log(data);
+		// console.log({data});
+
 		if(pos) {
 			setPosition(pos);
 			delete data.pos1;
 		}
 		if(!message) {
-			throw new Error("mesasge is required to alert the user. newAlert({message:'your message!'})");
+			throw new Error("message is required to alert the user. newAlert({message:'your message!'})");
 		}
 		addNewAlert(data);
 	}
@@ -115,4 +130,31 @@
 	.right {
 		right: 50px;
 	}
+
+	/* #### Mobile Phones Portrait or Landscape #### */
+@media screen and (max-device-width: 640px){
+	.alerts {
+    margin: 0px;
+    padding: 0px;
+    width: 95vw;
+    bottom: 0px;
+		left: 50%;
+		right: 0px;
+		transform: translate(-50%, 0)
+	}
+}
+/* 
+@media screen and (max-device-width: 401px) {
+.alerts {
+    width: 200px;
+
+		margin: 0px;
+    padding: 0px;
+    width: 100%;
+    bottom: 0px;
+		left: 50%;
+		right: 0px;
+		transform: translate(-50%, 0)
+	}
+} */
 </style>
