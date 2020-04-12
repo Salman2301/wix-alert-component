@@ -26,7 +26,7 @@
 	updatePositionClass();
 	function updatePositionClass() {
 		const [pos1, pos2] = position.split("-");
-		console.log({pos1, pos2});
+		// console.log({pos1, pos2});
 
 		posTop = pos1 === "top";
 		posBottom = pos1 === "bottom";
@@ -54,7 +54,7 @@
 
 	
 	export function setPosition(pos) {
-		console.log({pos});
+		// console.log({pos});
 		
 		if(isValidPositon(pos)) {
 				position=pos;
@@ -109,10 +109,10 @@
 	}
 
 	.left {
-		left: 0px;
+		left: 50px;
 	}
 	
 	.right {
-		right: 60px;
+		right: 50px;
 	}
 </style>

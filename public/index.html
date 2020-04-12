@@ -14,5 +14,12 @@
 </head>
 <body>
 	<!-- <alerts-component></alerts-component> -->
+
+	<script defer >
+		setTimeout(()=>{
+			document.querySelector("alerts-component").newAlert({message:`hello world!!`, autoExit: false})
+
+		}, 2000);
+	</script>
 </body>
 </html>
