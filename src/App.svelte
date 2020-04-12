@@ -6,11 +6,11 @@
 	
 
 	// ATTRIBUT DOES NOT ALLOW - OR _ OR UPPER CASE	
-	export let setposition="bottom-left";
+	export let setposition="bottom-right";
 	export let newalert;
 
 
-	let position="bottom-left";
+	let position="bottom-right";
 
 	let availPos = [
 		"top",
