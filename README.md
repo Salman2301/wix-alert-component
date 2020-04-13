@@ -14,14 +14,21 @@
   3. Drag and drop [Custom Element](https://support.wix.com/en/article/corvid-about-custom-elements-8253009) from '+' icon > More > Custom Element (in Custom Embed Section)
   4. Select 'Choose Source'
   5. Select 'Corvid file'
-  7. Click on Select on of your file
-  8. If you don't have any file, it will show 'Create a new file'
-  9. Open the `Public/custom-elements` in the `Site Structure` and create a new file, with a name `Snackbar.js`
-  10. Copy the code from this repo [build/index.js](build/index.js)
-  11. Paste the code in the `Snackbar.js` file
-  12. And then go to the page where you drag and drop the custom element
-  13. Change the Tag Name field to `alerts-component`
-  14. Drag the element to (Header or Footer) or check "Show on all page" to set the element globally 
+  6. Click on Select on of your file
+  7. If you don't have any file, it will show 'Create a new file'
+  8. Open the `Public/custom-elements` in the `Site Structure` and create a new file, with a name `Snackbar.js`
+  9. Copy the code from this repo [build/index.js](build/index.js)
+  10. Paste the code in the `Snackbar.js` file
+  11. And then go to the page where you drag and drop the custom element
+  12. Change the Tag Name field to `alerts-component`
+  13. Drag the element to (Header or Footer) or check "Show on all page" to set the element globally 
+
+  Using Server URL
+   you can skip the 5, 6, 7, 8, 9, 10, 11
+   And use the server URL option
+   JS file is hosted in jsdelivr
+   Paste the below link and continue changing the tag name on step 12
+   [https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/build/index.js](https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/build/index.js)
 
 ## Available Atrributes
   1. setposition
@@ -157,9 +164,9 @@
 - [ ] Ability to add link in message or allow html for message
 - [ ] Icon for type of message
 - [ ] callback also need to fire .on() the webcomponent
-- [ ] Demo link
-- [ ] Generate the code
-- [ ] Hosted Server URL
+- [x] Demo link
+- [x] Generate the code
+- [x] Hosted Server URL
 
   
 # Development
