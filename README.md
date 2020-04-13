@@ -103,7 +103,7 @@
 ```js
   // example wix code
   $w.onReady(()=>{
-    $w('#CustomElement1').setAttribute("newalert", JSON.stringify({message: "hellow world!"}));
+    $w('#CustomElement1').setAttribute("newalert", JSON.stringify({message: "hello world!"}));
 
 ```
 
