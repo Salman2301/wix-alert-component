@@ -24,10 +24,12 @@
   13. Drag the element to (Header or Footer) or check "Show on all page" to set the element globally 
 
   Using Server URL
-   you can skip the 5, 6, 7, 8, 9, 10, 11
-   And use the server URL option
-   JS file is hosted in jsdelivr
-   Paste the below link and continue changing the tag name on step 12
+   you can skip 5-11 steps and by using the server URL option after point 4,
+
+   JS file is hosted in [jsdelivr](https://www.jsdelivr.com/)
+
+   Paste the below link and continue from step 12
+
    [https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/build/index.js](https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/build/index.js)
 
 ## Available Atrributes
@@ -41,14 +43,11 @@
   ![positions](/readmeDoc/position.gif)
   
   Setposition allows you choose any corner of the website to show your alert. for desktop by default set to `bottom-right` and avaiable position are as follows
-  1. top
-  2. left
-  3. right
-  4. bottom
-  5. top-left
-  6. top-right
-  7. bottom-left
-  8. bottom-right
+
+  1. top-left
+  2. top-right
+  3. bottom-left
+  4. bottom-right
 
   And for mobile
   1. top
@@ -164,9 +163,12 @@
 - [ ] Ability to add link in message or allow html for message
 - [ ] Icon for type of message
 - [ ] callback also need to fire .on() the webcomponent
-- [x] Demo link
-- [x] Generate the code
+- [x] Demo link to test the component
+- [ ] Generate the code, using wix site
 - [x] Hosted Server URL
+- [ ] Refactor the code
+- [ ] Ability to set the top and bottom position on mobile mode
+
 
   
 # Development
@@ -175,6 +177,9 @@
 3. run `npm install`
 4. and `npm run dev`
 5. server should be running in port `5000`
+
+# tech stack Used
+1. svelte
 
 # License
 MIT
