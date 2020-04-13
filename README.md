@@ -28,7 +28,9 @@
   2. newalert
 
 ## Attirbute `setposition`
+
   position demo:
+
   ![positions](/readmeDoc/position.gif)
   
   Setposition allows you choose any corner of the website to show your alert. for desktop by default set to `bottom-right` and avaiable position are as follows
@@ -44,9 +46,11 @@
   And for mobile
   1. top
   2. bottom
-  By default the alert will be center horizontally, 
+
+  By default the alert will be center horizontally for mobile, 
 
   Responsive Demo:
+
   ![responsive](/readmeDoc/responsive.gif)
 
 
