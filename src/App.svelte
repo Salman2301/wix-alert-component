@@ -112,7 +112,10 @@
 	.alerts {
 		position: fixed;
     /* left:2%; */
-    width: 300px;
+		width: 300px;
+		
+    z-index: 1000;
+    background-color: white;
 	}
 
 	.top {
