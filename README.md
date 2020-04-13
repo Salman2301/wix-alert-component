@@ -24,9 +24,9 @@
   13. Drag the element to (Header or Footer) or check "Show on all page" to set the element globally 
 
   Using Server URL
-   you can skip 5-11 steps and by using the server URL option after point 4,
+   you can skip 5-11 steps by selecting the server URL option after point 4,
 
-   JS file is hosted in [jsdelivr](https://www.jsdelivr.com/)
+   file is hosted in [jsdelivr](https://www.jsdelivr.com/)
 
    Paste the below link and continue from step 12
 
