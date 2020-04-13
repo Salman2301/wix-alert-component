@@ -140,7 +140,6 @@
     margin: 0px;
     padding: 0px;
     width: 95vw;
-    bottom: 0px;
 		left: 50%;
 		right: 0px;
 		transform: translate(-50%, 0)
