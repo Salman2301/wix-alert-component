@@ -4,7 +4,7 @@
 
   Using web component. 
   
-  Live demo link: Comming Soon...
+  Live demo link: [https://www.test.salman2301.com/alert-web-component](https://www.test.salman2301.com/alert-web-component)
 
 
 # Instruction
