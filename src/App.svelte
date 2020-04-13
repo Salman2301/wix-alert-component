@@ -1,5 +1,3 @@
-<svelte:options tag="alerts-component" />
-
 <script>
   import { alertsStore, addNewAlert } from "./store.js";
   import Alert from "./Alert.svelte";
@@ -10,12 +8,7 @@
 
   let position = "bottom-right";
 
-  let availPos = [
-    "top-left",
-    "top-right",
-    "bottom-left",
-    "bottom-right"
-  ];
+  let availPos = ["top-left", "top-right", "bottom-left", "bottom-right"];
 
   let posTop = false;
   let posBottom = false;
@@ -25,8 +18,8 @@
   $: if (setPosition) setPosition(setposition);
   $: if (newalert) newAlert(newalert);
 
-	const isValidPositon = (pos) => availPos.indexOf(pos) > -1;
-	
+  const isValidPositon = pos => availPos.indexOf(pos) > -1;
+
   updatePositionClass();
   function updatePositionClass() {
     const [pos1, pos2] = position.split("-");
@@ -34,8 +27,8 @@
     posTop = pos1 === "top";
     posBottom = pos1 === "bottom";
 
-		posLeft = pos2 === "left";
-		posRight = pos2 === "right";
+    posLeft = pos2 === "left";
+    posRight = pos2 === "right";
   }
 
   export const newAlert = (data = {}) => {
@@ -48,23 +41,27 @@
     if (pos) {
       setPosition(pos);
       delete data.position;
-		}
-		
+    }
+
     if (!message) {
-      throw new Error("message is required to alert the user. newAlert({message:'string'})");
-		}
-		
+      throw new Error(
+        "message is required to alert the user. newAlert({message:'string'})"
+      );
+    }
+
     addNewAlert(data);
   };
 
   export function setPosition(pos) {
-		if (!isValidPositon(pos)) {
-			console.error("Not a vaild position!, available positions : " + availPos.join(", "));
-			return;
-		}
+    if (!isValidPositon(pos)) {
+      console.error(
+        "Not a vaild position!, available positions : " + availPos.join(", ")
+      );
+      return;
+    }
 
-		position = pos;
-		updatePositionClass();
+    position = pos;
+    updatePositionClass();
   }
 
   export function handleDone(e) {
@@ -72,24 +69,23 @@
 
     let id = e.detail.id;
     $alertsStore = $alertsStore.filter((alert, i) => alert.id !== id);
-	}
-	
+  }
 </script>
 
-
+<svelte:options tag="alerts-component" />
 <div
   class="alerts bottom left"
-  class:top={posTop}
-  class:bottom={posBottom}
-  class:left={posLeft}
-  class:right={posRight}>
+  class:top="{posTop}"
+  class:bottom="{posBottom}"
+  class:left="{posLeft}"
+  class:right="{posRight}"
+>
 
   {#each $alertsStore as alert (alert.id)}
-    <alert-component {...alert} on:done={handleDone} />
+    <alert-component {...alert} on:done="{handleDone}"></alert-component>
   {/each}
 
 </div>
-
 
 <style>
   .alerts {
@@ -99,13 +95,21 @@
     background-color: white;
   }
 
-  .top {top: 5px;}
+  .top {
+    top: 5px;
+  }
 
-  .bottom {bottom: 5px;}
+  .bottom {
+    bottom: 5px;
+  }
 
-  .left {left: 50px;}
+  .left {
+    left: 50px;
+  }
 
-  .right {right: 50px;}
+  .right {
+    right: 50px;
+  }
 
   @media screen and (max-device-width: 640px) {
     .alerts {

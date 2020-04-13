@@ -1,5 +1,3 @@
-<svelte:options tag="alert-component" />
-
 <script>
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
@@ -25,7 +23,7 @@
   export let onAction;
   export let id;
   export let type = "success";
-	
+
   // variable
   let alertInstance;
   const perSec = 1000;
@@ -63,28 +61,34 @@
     // trigger when timeout or button click
     if (onClose && typeof onClose === "function") onClose(detail);
     // trigger only when the button click
-    if (onAction && reason !== "timeout"  && typeof onAction === "function") onAction(detail);
+    if (onAction && reason !== "timeout" && typeof onAction === "function")
+      onAction(detail);
 
     dispatch("done", detail);
   };
 </script>
 
-<div class="alert" bind:this={alertInstance}>
-  <div class="header" />
+<svelte:options tag="alert-component" />
+<div class="alert" bind:this="{alertInstance}">
+  <div class="header"></div>
 
-  <div class="alert-body" transition:fly={{ x: -100, duration: 1200 }} {style}>
+  <div
+    class="alert-body"
+    transition:fly="{{ x: -100, duration: 1200 }}"
+    {style}
+  >
 
     <p class="message">{message}</p>
 
     <button
       class="btn-close"
-      class:isBtnAction={closeLabel !== 'X' && closeLabel !== ''}
-      on:click={handleClose}>
+      class:isBtnAction="{closeLabel !== 'X' && closeLabel !== ''}"
+      on:click="{handleClose}"
+    >
       {closeLabel}
     </button>
   </div>
 </div>
-
 
 <style>
   :host {
@@ -157,5 +161,4 @@
       margin-bottom: 10px;
     }
   }
-	
 </style>
