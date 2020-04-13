@@ -24,7 +24,7 @@
   export let onClose;
   export let onAction;
   export let id;
-	export let type = "success";
+  export let type = "success";
 	
   // variable
   let alertInstance;

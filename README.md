@@ -167,8 +167,8 @@ $w("#dataset").onReady(() => {
 - [ ] Icon for type of message
 - [ ] callback also need to fire .on() the webcomponent
 - [ ] Generate the code, using wix site
-- [ ] Refactor the code
 - [ ] Ability to set the top and bottom position on mobile mode
+- [x] Refactor the code
 - [x] Demo link to test the component
 - [x] Hosted Server URL
 
