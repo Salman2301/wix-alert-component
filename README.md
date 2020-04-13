@@ -28,6 +28,9 @@
   2. newalert
 
 ## Attirbute `setposition`
+  position demo:
+  ![positions](/readmeDoc/position.gif)
+  
   Setposition allows you choose any corner of the website to show your alert. for desktop by default set to `bottom-right` and avaiable position are as follows
   1. top
   2. left
@@ -42,6 +45,10 @@
   1. top
   2. bottom
   By default the alert will be center horizontally, 
+
+  Responsive Demo:
+  ![responsive](/readmeDoc/responsive.gif)
+
 
   ```js
     // example wix code
@@ -151,3 +158,15 @@
 - [ ] Hosted Server URL
 
   
+# Development
+1. Clone this repo
+2. goto the cloned folder
+3. run `npm install`
+4. and `npm run dev`
+5. server should be running in port `5000`
+
+# License
+MIT
+
+# Contact or Help
+Leave a message in [my website](https://salman2301.com)
