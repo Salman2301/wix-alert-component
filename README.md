@@ -162,7 +162,7 @@ $w("#dataset").onReady(() => {
 
 # Todo:
 
-- [ ] Fix Animation Fly in and Fly out!
+- [x] Fix Animation Fly in and Fly out!
 - [ ] Ability to add link in message or allow html for message
 - [ ] Icon for type of message
 - [ ] callback also need to fire .on() the webcomponent
