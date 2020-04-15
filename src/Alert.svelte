@@ -2,6 +2,9 @@
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
   import { get_current_component } from "svelte/internal";
+  import alertIcon from "./icons/warning.js";
+  import closeIcon from "./icons/close.js";
+
 
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
@@ -17,7 +20,7 @@
   export let brandColor = "#4BB543";
   export let autoClose = true;
   export let closeLabel = "X";
-  export let wait = 4; // wait for 4 sec before autoClose
+  export let wait = 8; // wait for 4 sec before autoClose
   export let style = "";
   export let onClose;
   export let onAction;
@@ -69,54 +72,140 @@
 </script>
 
 <svelte:options tag="alert-component" />
+
+<svelte:head>
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto"
+    rel="stylesheet"
+  />
+</svelte:head>
+
 <div class="alert" bind:this="{alertInstance}">
+
   <div class="header"></div>
 
-  <div
-    class="alert-body"
-    transition:fly="{{ x: -100, duration: 1200 }}"
-    {style}
+  <div class="icon">
+    {@html alertIcon}
+  </div>
+  <div class="alert-container"
+  class:shrink={closeLabel !== 'X'}
   >
 
-    <p class="message">{message}</p>
+    <div class="alert-title">
+      <p>Opps</p>
+    </div>
 
+    <div
+      class="alert-body"
+      transition:fly="{{ x: -100, duration: 1200 }}"
+      {style}
+    >
+      <p class="message">{message}</p>
+
+    </div>
+  </div>
+
+  <div 
+    class="close"
+    class:isBtnAction={closeLabel !== 'X'}
+  >
+    {#if closeLabel === 'X'} 
+      {@html closeIcon}
+    {:else}
     <button
       class="btn-close"
-      class:isBtnAction="{closeLabel !== 'X' && closeLabel !== ''}"
-      on:click="{handleClose}"
+      on:click={handleClose}
     >
       {closeLabel}
     </button>
+    
+    {/if}
   </div>
+  
 </div>
 
 <style>
   :host {
     --brand-color: "#4BB543";
+    margin: 0px;
+    padding: 0px;
+  }
+  p {
+    margin: 0px;
+    padding: 0px;
   }
   .alert {
-    margin: 10px 10px;
+    margin: 0px;
     padding: 0px;
     width: 100%;
     bottom: 10px;
-    min-height: 50px;
+    min-height: 80px;
     max-height: 200px;
-    font-size: 18px;
-    font-family: sans-serif;
-    border: 1px solid var(--brand-color);
-    box-shadow: 4px 4px 10px -5px black;
+    font-family: "Roboto"; /* sans-serif */
+    /* border: 1px solid var(--brand-color); */
+    box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.25);
+    display: flex;
+  }
+
+  .alert-container {
+    width: 200px;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .alert-title > p {
+    width: 200px;
+  }
+
+  .alert-title {
+    width: 200px;
+
+    font-weight: bold;
+    font-size: 16px;
+    margin-top: 9px;
+    /* width: 100%; */
+  }
+
+  .alert-title > p {
+    width: 200px;
   }
 
   .alert-body {
     display: flex;
     background: white;
-    color: black;
-    height: 90%;
+    color: #767676;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-size: 22px;
+    font-weight: lighter;
+    font-style: normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 16px;
+  }
+  .alert-body > p {
+    margin: 0;
+    padding: 0;
+    width: 200px;
+  }
+
+  .icon {
+    margin: 0px;
+    margin-top: 9px;
+    width: 53px;
+    display: block;
+  }
+
+  .icon > * {
+    width: 25px;
+    height: 25px;
+    margin: auto;
+    display: block;
   }
 
   .header {
-    height: 5px;
-    width: 100%;
+    width: 12px;
     background: var(--brand-color);
   }
 
@@ -126,6 +215,10 @@
     padding: 2px 5px;
     width: 80%;
   }
+
+  .close {
+    margin: auto;
+  }
   .btn-close {
     flex: auto;
     float: right;
@@ -134,27 +227,32 @@
     border: 0px;
     font-size: 16px;
     cursor: pointer;
-    color: var(--brand-color);
-    background: rgba(0, 0, 0, 0);
+    /* color: var(--brand-color); */
+    background: #fff;
   }
-
   .isBtnAction {
-    border: 1px solid black;
+    width:200px; 
+    display:flex;
+  }
+  .isBtnAction > button{
+    border: 1px solid #ccc;
     color: black;
     align-self: center;
-    font-size: 16px;
-    width: 80px;
-    margin: 5px 10px;
+    font-size: 12px;
+    font-weight:bold;
+    /* width: 80px; */
+    margin: 0 10px;
+
+  }
+  .isBtnAction > button:hover, .isBtnAction > button:active{
+    color: #333;
+    border: 1px solid black;
   }
 
-  .btn-close:active {
-    color: black;
+  .shrink{
+    width: 150px;
   }
-
-  .btn-close:hover {
-    color: black;
-  }
-
+  
   @media screen and (max-device-width: 640px) {
     .alert {
       margin: 0px;

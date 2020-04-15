@@ -1,7 +1,7 @@
 <script>
   import { alertsStore, addNewAlert } from "./store.js";
   import Alert from "./Alert.svelte";
-
+  
   // ATTRIBUT DOES NOT ALLOW - OR _ OR UPPER CASE
   export let setposition = "bottom-right";
   export let newalert;

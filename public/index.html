@@ -6,14 +6,30 @@
 
 	<title>Alert Component</title>
 
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto"> -->
 	<script defer src='/build/bundle.js'></script>
 </head>
 <body>
 	<alerts-component></alerts-component>
+	<style>
+		h1 {
+    font-family: 'Roboto';
+		}
+
+	</style>
+	<h1>Test roboto</h1>
+	<button id="btn">Show Alert</button>
 	<script defer >
+		let $alert = 	document.querySelector("alerts-component");
+		let $btn = document.getElementById("btn");
+		
 		setTimeout(()=>{
-			document.querySelector("alerts-component").newAlert({message:`hello world!!`, autoClose: false})
+			$alert.newAlert({message:`hello world!!`, autoClose: false})
 		}, 2000);
+
+		btn.addEventListener("click" , function() {
+			$alert.newAlert({message:`hello world!!`,})
+		});
 	</script>
 </body>
 </html>

@@ -90,8 +90,8 @@ Other methods are as follow
    // you can also use any word e.g: "ACTION"| "Yes"|"No"
    closeLabel : "X",
 
-   // wait for 4 sec before autoClose, if it's set to true
-   wait : 4,
+   // wait for 8 sec before autoClose, if it's set to true
+   wait : 8,
 
    // custom css style
    style:"",
@@ -168,6 +168,7 @@ $w("#dataset").onReady(() => {
 - [ ] callback also need to fire .on() the webcomponent
 - [ ] Generate the code, using wix site
 - [ ] Ability to set the top and bottom position on mobile mode
+- [ ] on Click redirect to a url 
 - [x] Refactor the code
 - [x] Demo link to test the component
 - [x] Hosted Server URL
