@@ -16,7 +16,8 @@
   };
 
   // props
-  export let message = "Alert message!.";
+  export let message = "Something went wrong. Check filed and try again";
+  export let title = "Opps";
   export let brandColor = "#4BB543";
   export let autoClose = true;
   export let closeLabel = "X";
@@ -25,7 +26,7 @@
   export let onClose;
   export let onAction;
   export let id;
-  export let type = "success";
+  export let type = "error";
 
   // variable
   let alertInstance;
@@ -92,7 +93,7 @@
   >
 
     <div class="alert-title">
-      <p>Opps</p>
+      <p>{title}</p>
     </div>
 
     <div
@@ -145,6 +146,7 @@
     /* border: 1px solid var(--brand-color); */
     box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.25);
     display: flex;
+    margin-bottom: 10px;
   }
 
   .alert-container {
@@ -175,7 +177,6 @@
     background: white;
     color: #767676;
     overflow: hidden;
-    white-space: nowrap;
     text-overflow: ellipsis;
     font-size: 22px;
     font-weight: lighter;
@@ -196,8 +197,13 @@
     width: 53px;
     display: block;
   }
+  svg {
+    shape-rendering: geometricprecision;
+
+  }
 
   .icon > * {
+    /* SVG ICON */
     width: 25px;
     height: 25px;
     margin: auto;
