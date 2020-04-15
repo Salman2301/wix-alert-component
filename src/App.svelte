@@ -1,7 +1,8 @@
 <script>
   import { alertsStore, addNewAlert } from "./store.js";
   import Alert from "./Alert.svelte";
-  
+
+  // TODO: rename a better attribute and function name
   // ATTRIBUT DOES NOT ALLOW - OR _ OR UPPER CASE
   export let setposition = "bottom-right";
   export let newalert;
@@ -72,9 +73,17 @@
   }
 </script>
 
+<svelte:head>
+  <link
+    href="https://fonts.googleapis.com/css?family=Roboto"
+    rel="stylesheet"
+  />
+</svelte:head>
+
 <svelte:options tag="alerts-component" />
+
 <div
-  class="alerts bottom left"
+  class="alerts bottom right"
   class:top="{posTop}"
   class:bottom="{posBottom}"
   class:left="{posLeft}"

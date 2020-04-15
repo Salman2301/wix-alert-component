@@ -5,7 +5,6 @@
   import alertIcon from "./icons/warning.js";
   import closeIcon from "./icons/close.js";
 
-
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
 
@@ -33,7 +32,7 @@
   const perSec = 1000;
 
   // lifecycle
-  onMount(() => {
+  onMount(async () => {
     // console.log({alertInstance});
     if (type !== "success") {
       if (type === "error") {
@@ -49,13 +48,23 @@
 
     dispatch("ready");
 
+    alertInstance.classList.add("slide"); //toggle("slide");
+
     if (autoClose) setTimeout(() => done("timeout"), wait * perSec);
+  });
+
+  onDestroy(async () => {
+    await alertInstance.classList.toggle("slide");
   });
 
   // event
   const handleClose = e => done("action");
 
-  const done = reason => {
+  const waitTill = ms => new Promise(res => setTimeout(res, ms));
+  const done = async reason => {
+    alertInstance.classList.toggle("slide");
+    await waitTill(1000);
+
     let detail = {
       reason: reason,
       message: message,
@@ -67,62 +76,45 @@
     // trigger only when the button click
     if (onAction && reason !== "timeout" && typeof onAction === "function")
       onAction(detail);
-
     dispatch("done", detail);
   };
 </script>
 
 <svelte:options tag="alert-component" />
 
-<svelte:head>
-  <link
-    href="https://fonts.googleapis.com/css?family=Roboto"
-    rel="stylesheet"
-  />
-</svelte:head>
-
-<div class="alert" bind:this="{alertInstance}">
-
+<div
+  class="alert slide"
+  transition:fly="{{ x: -100, duration: 1200 }}"
+  bind:this="{alertInstance}"
+>
   <div class="header"></div>
 
   <div class="icon">
     {@html alertIcon}
   </div>
-  <div class="alert-container"
-  class:shrink={closeLabel !== 'X'}
-  >
 
+  <div class="alert-container" class:shrink="{closeLabel !== 'X'}">
     <div class="alert-title">
       <p>{title}</p>
     </div>
 
-    <div
-      class="alert-body"
-      transition:fly="{{ x: -100, duration: 1200 }}"
-      {style}
-    >
+    <div class="alert-body" {style}>
       <p class="message">{message}</p>
-
     </div>
   </div>
 
-  <div 
+  <div
     class="close"
-    class:isBtnAction={closeLabel !== 'X'}
+    class:isBtnAction="{closeLabel !== 'X'}"
+    on:click="{handleClose}"
   >
-    {#if closeLabel === 'X'} 
+    {#if closeLabel === 'X'}
       {@html closeIcon}
     {:else}
-    <button
-      class="btn-close"
-      on:click={handleClose}
-    >
-      {closeLabel}
-    </button>
-    
+      <button class="btn-close">{closeLabel}</button>
     {/if}
   </div>
-  
+
 </div>
 
 <style>
@@ -131,10 +123,12 @@
     margin: 0px;
     padding: 0px;
   }
+
   p {
     margin: 0px;
     padding: 0px;
   }
+
   .alert {
     margin: 0px;
     padding: 0px;
@@ -142,11 +136,11 @@
     bottom: 10px;
     min-height: 80px;
     max-height: 200px;
-    font-family: "Roboto"; /* sans-serif */
-    /* border: 1px solid var(--brand-color); */
+    font-family: "Roboto", sans-serif;
     box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.25);
     display: flex;
     margin-bottom: 10px;
+    animation: slide-in 2s;
   }
 
   .alert-container {
@@ -155,17 +149,11 @@
     padding: 0px;
   }
 
-  .alert-title > p {
-    width: 200px;
-  }
-
   .alert-title {
     width: 200px;
-
     font-weight: bold;
     font-size: 16px;
     margin-top: 9px;
-    /* width: 100%; */
   }
 
   .alert-title > p {
@@ -185,6 +173,7 @@
     font-size: 14px;
     line-height: 16px;
   }
+
   .alert-body > p {
     margin: 0;
     padding: 0;
@@ -197,9 +186,9 @@
     width: 53px;
     display: block;
   }
+
   svg {
     shape-rendering: geometricprecision;
-
   }
 
   .icon > * {
@@ -224,7 +213,9 @@
 
   .close {
     margin: auto;
+    cursor: pointer;
   }
+
   .btn-close {
     flex: auto;
     float: right;
@@ -233,36 +224,68 @@
     border: 0px;
     font-size: 16px;
     cursor: pointer;
-    /* color: var(--brand-color); */
     background: #fff;
   }
+
   .isBtnAction {
-    width:200px; 
-    display:flex;
+    width: 200px;
+    display: flex;
   }
-  .isBtnAction > button{
+
+  .isBtnAction > button {
     border: 1px solid #ccc;
     color: black;
     align-self: center;
     font-size: 12px;
-    font-weight:bold;
-    /* width: 80px; */
+    font-weight: bold;
     margin: 0 10px;
-
   }
-  .isBtnAction > button:hover, .isBtnAction > button:active{
+
+  .isBtnAction > button:hover,
+  .isBtnAction > button:active {
     color: #333;
     border: 1px solid black;
   }
 
-  .shrink{
+  .shrink {
     width: 150px;
   }
-  
+
+  .slide {
+    animation: slide-out 2s;
+  }
+
   @media screen and (max-device-width: 640px) {
     .alert {
       margin: 0px;
       margin-bottom: 10px;
+    }
+
+    .close {
+      margin-left: 50px;
+      margin-right: 50px;
+    }
+
+    .alert-container {
+      width: 300px;
+    }
+  }
+
+  @keyframes slide-in {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  @keyframes slide-out {
+    from {
+      transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
     }
   }
 </style>
