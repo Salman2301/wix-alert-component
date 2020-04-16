@@ -1,11 +1,13 @@
 <script>
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { get_current_component } from "svelte/internal";
-  import successIcon from "./icons/success.js";
-  import infoIcon from "./icons/info.js";
-  import warnIcon from "./icons/warning.js";
-  import errorIcon from "./icons/error.js";
-  import closeIcon from "./icons/close.js";
+  import {
+    successIcon,
+    infoIcon,
+    warnIcon,
+    errorIcon,
+    closeIcon
+  } from "./icons/all.js";
 
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
