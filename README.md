@@ -160,15 +160,16 @@ $w("#dataset").onReady(() => {
 });
 ```
 
-# Todo:
+# Todo: V2
 
-- [x] Fix Animation Fly in and Fly out!
+- [ ] Ability to set the top and bottom position only on mobile mode
 - [ ] Ability to add link in message or allow html for message
-- [ ] Icon for type of message
-- [ ] callback also need to fire .on() the webcomponent
+- [ ] Callback also need to fire .on() the webcomponent
+- [ ] Fix Animation on left side alerts
 - [ ] Generate the code, using wix site
-- [ ] Ability to set the top and bottom position on mobile mode
-- [ ] on Click redirect to a url 
+- [ ] On Click of a message body, redirect to the url
+- [x] Fix Animation Fly in and Fly out!
+- [x] Icon for type of message
 - [x] Refactor the code
 - [x] Demo link to test the component
 - [x] Hosted Server URL
