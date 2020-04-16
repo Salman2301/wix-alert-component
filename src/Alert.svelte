@@ -56,9 +56,8 @@
       brandColor = "orange";
       alertIcon = warnIcon;
     }
-    console.log({before:alertIcon});
+
     alertIcon =  alertIcon.replace(/{fillColor}/g, brandColor);
-    console.log({after:alertIcon});
 
     alertInstance.style.setProperty("--brand-color", brandColor);
 
