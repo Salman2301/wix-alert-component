@@ -13,10 +13,10 @@
 	<alerts-component></alerts-component>
 	<style>
 		h1 {
-    font-family: 'Roboto';
+    	font-family: 'Roboto';
 		}
-
 	</style>
+
 	<h1>Test</h1>
 	<div>
 		<textarea id="textJson" rows="10" cols="50" value="test" >
@@ -24,21 +24,15 @@
 	</div>
 
 	<button id="btn">Show Alert</button>
+
 	<script defer >
 		let $alert = 	document.querySelector("alerts-component");
 		let $btn = document.getElementById("btn");
 		let $text = document.getElementById("textJson");
 
 
-		setTimeout(()=>{
-			$alert.newAlert({message:`Something went wrong. Check filed and try again`, autoClose: false})
-		}, 2000);
 
-		btn.addEventListener("click" , function() {
-			$alert.newAlert(JSON.parse($text.value));
-		});
-
-
+		
 		$text.value = JSON.stringify(
 			{
 				message:"This is a text",
@@ -48,6 +42,13 @@
 			}, null, 4
 		)
 		
+		$btn.addEventListener("click" , function() {
+			$alert.newAlert(JSON.parse($text.value));
+		});
+
+		setTimeout(()=>{
+			$btn.click();
+		}, 2000);
 	</script>
 </body>
 </html>
