@@ -1,6 +1,5 @@
 <script>
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
-  import { fly } from "svelte/transition";
   import { get_current_component } from "svelte/internal";
   import successIcon from "./icons/success.js";
   import infoIcon from "./icons/info.js";
@@ -19,17 +18,17 @@
   };
 
   // props
-  export let message = "Something went wrong. Check filed and try again";
+  export let id;
   export let title = "Oops";
-  export let brandColor = "#4BB543";
+  export let message = "Something went wrong. Check filed and try again";
+  export let type = "error";
   export let autoClose = true;
   export let closeLabel = "X";
   export let wait = 8; // wait for 4 sec before autoClose
+  export let brandColor = "red";
   export let style = "";
   export let onClose;
   export let onAction;
-  export let id;
-  export let type = "error";
 
   // variable
   let alertInstance;
@@ -42,19 +41,22 @@
     if (type === "success") {
       brandColor = "#4BB543";
       alertIcon = successIcon;
-    
+      if(!title) title = "Success!";
     }
     else if (type === "error") {
       brandColor = "red";
       alertIcon = errorIcon;
+      if(!title) title = "Oops!";
     }
-      else if (type === "info") {
+    else if (type === "info") {
       brandColor = "grey";
       alertIcon = infoIcon;
+      if(!title) title = "Info!";
     }
-      else if (type === "warn") {
+    else if (type === "warn") {
       brandColor = "orange";
       alertIcon = warnIcon;
+      if(!title) title = "Info!";
     }
 
     alertIcon =  alertIcon.replace(/{fillColor}/g, brandColor);
@@ -100,7 +102,6 @@
 
 <div
   class="alert slide"
-  transition:fly="{{ x: -100, duration: 1200 }}"
   bind:this="{alertInstance}"
 >
   <div class="header"></div>
