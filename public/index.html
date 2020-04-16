@@ -17,19 +17,37 @@
 		}
 
 	</style>
-	<h1>Test roboto</h1>
+	<h1>Test</h1>
+	<div>
+		<textarea id="textJson" rows="10" cols="50" value="test" >
+		</textarea>
+	</div>
+
 	<button id="btn">Show Alert</button>
 	<script defer >
 		let $alert = 	document.querySelector("alerts-component");
 		let $btn = document.getElementById("btn");
-		
+		let $text = document.getElementById("textJson");
+
+
 		setTimeout(()=>{
 			$alert.newAlert({message:`Something went wrong. Check filed and try again`, autoClose: false})
 		}, 2000);
 
 		btn.addEventListener("click" , function() {
-			$alert.newAlert({message:`hello world!!`, autoClose:false})
+			$alert.newAlert(JSON.parse($text.value));
 		});
+
+
+		$text.value = JSON.stringify(
+			{
+				message:"This is a text",
+				autoClose:false,
+				title: "Hello",
+				type:"success"
+			}, null, 4
+		)
+		
 	</script>
 </body>
 </html>

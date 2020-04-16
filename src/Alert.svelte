@@ -2,11 +2,15 @@
   import { onMount, onDestroy, createEventDispatcher } from "svelte";
   import { fly } from "svelte/transition";
   import { get_current_component } from "svelte/internal";
-  import alertIcon from "./icons/warning.js";
+  import successIcon from "./icons/success.js";
+  import infoIcon from "./icons/info.js";
+  import warnIcon from "./icons/warning.js";
+  import errorIcon from "./icons/error.js";
   import closeIcon from "./icons/close.js";
 
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
+
 
   const dispatch = (name, detail) => {
     svelteDispatch(name, detail);
@@ -16,7 +20,7 @@
 
   // props
   export let message = "Something went wrong. Check filed and try again";
-  export let title = "Opps";
+  export let title = "Oops";
   export let brandColor = "#4BB543";
   export let autoClose = true;
   export let closeLabel = "X";
@@ -30,21 +34,34 @@
   // variable
   let alertInstance;
   const perSec = 1000;
+  let alertIcon = errorIcon;
 
   // lifecycle
   onMount(async () => {
     // console.log({alertInstance});
-    if (type !== "success") {
-      if (type === "error") {
-        brandColor = "red";
-      } else if (type === "info") {
-        brandColor = "grey";
-      } else if (type === "warn") {
-        brandColor = "orange";
-      }
+    if (type === "success") {
+      brandColor = "#4BB543";
+      alertIcon = successIcon;
+    
     }
+    else if (type === "error") {
+      brandColor = "red";
+      alertIcon = errorIcon;
+    }
+      else if (type === "info") {
+      brandColor = "grey";
+      alertIcon = infoIcon;
+    }
+      else if (type === "warn") {
+      brandColor = "orange";
+      alertIcon = warnIcon;
+    }
+    console.log({before:alertIcon});
+    alertIcon =  alertIcon.replace(/{fillColor}/g, brandColor);
+    console.log({after:alertIcon});
 
     alertInstance.style.setProperty("--brand-color", brandColor);
+
 
     dispatch("ready");
 
