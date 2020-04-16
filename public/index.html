@@ -14,10 +14,18 @@
 	<style>
 		h1 {
     	font-family: 'Roboto';
+			margin-bottom: 5px;
+		}
+		p {
+			margin-top: 0px;
+			color: #333;
+			font-family: 'Roboto';
+
 		}
 	</style>
 
 	<h1>Test</h1>
+	<p><b>message object</b> in JSON to test the component.</p>
 	<div>
 		<textarea id="textJson" rows="10" cols="50" value="test" >
 		</textarea>
@@ -38,7 +46,8 @@
 				message:"This is a text",
 				autoClose:false,
 				title: "Hello",
-				type:"success"
+				type:"success",
+				position: "top-right"
 			}, null, 4
 		)
 		

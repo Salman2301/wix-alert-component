@@ -22,7 +22,7 @@
   // props
   export let id;
   export let title = "Oops";
-  export let message = "Something went wrong. Check filed and try again";
+  export let message = "Something went wrong. Check field and try again";
   export let type = "error";
   export let autoClose = true;
   export let closeLabel = "X";
@@ -31,7 +31,7 @@
   export let style = "";
   export let onClose;
   export let onAction;
-
+  export let pos = "bottom-right"; //
   // variable
   let alertInstance;
   const perSec = 1000;

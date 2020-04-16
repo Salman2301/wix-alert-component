@@ -1,13 +1,11 @@
 <script>
-  import { alertsStore, addNewAlert } from "./store.js";
+  import { alertsStore, addNewAlert, position } from "./store.js";
   import Alert from "./Alert.svelte";
 
   // TODO: rename a better attribute and function name
   // ATTRIBUT DOES NOT ALLOW - OR _ OR UPPER CASE
-  export let setposition = "bottom-right";
+  export let setposition = $position;
   export let newalert;
-
-  let position = "bottom-right";
 
   let availPos = ["top-left", "top-right", "bottom-left", "bottom-right"];
 
@@ -21,9 +19,10 @@
 
   const isValidPositon = pos => availPos.indexOf(pos) > -1;
 
-  updatePositionClass();
+  position.subscribe(updatePositionClass);
+
   function updatePositionClass() {
-    const [pos1, pos2] = position.split("-");
+    const [pos1, pos2] = $position.split("-");
 
     posTop = pos1 === "top";
     posBottom = pos1 === "bottom";
@@ -32,11 +31,13 @@
     posRight = pos2 === "right";
   }
 
-  export const newAlert = (data = {}) => {
-    if (typeof data === "string") {
-      data = JSON.parse(data);
-      newalert = ""; // remove the attribute from html
+  export const newAlert = (data = {}) => {   
+    if (!data.message) {
+      throw new Error(
+        "message is required to alert the user. newAlert({message:'string'})"
+      );
     }
+
     const { message, position: pos } = data; //position
 
     if (pos) {
@@ -44,13 +45,15 @@
       delete data.position;
     }
 
-    if (!message) {
-      throw new Error(
-        "message is required to alert the user. newAlert({message:'string'})"
-      );
-    }
+    // pass the current position to Alert component
+    // data.pos = $position;
 
     addNewAlert(data);
+     if (typeof data === "string") {
+      data = JSON.parse(data);
+      newalert = ""; // remove the attribute from html
+    }
+      
   };
 
   export function setPosition(pos) {
@@ -60,8 +63,7 @@
       );
       return;
     }
-
-    position = pos;
+    $position = pos;
     updatePositionClass();
   }
 
