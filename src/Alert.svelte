@@ -10,10 +10,8 @@
   } from "./icons/all.js";
   import { position, pos } from "./store.js";
 
-
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
-
 
   const dispatch = (name, detail) => {
     svelteDispatch(name, detail);
@@ -33,7 +31,7 @@
   export let style = "";
   export let onClose;
   export let onAction;
-
+  export let knowMoreUrl;
   // variable
   let alertInstance;
   const perSec = 1000;
@@ -41,32 +39,28 @@
 
   // lifecycle
   onMount(async () => {
-    // console.log({alertInstance});
+
     if (type === "success") {
       brandColor = "#4BB543";
       alertIcon = successIcon;
-      if(!title) title = "Success!";
-    }
-    else if (type === "error") {
+      if (!title) title = "Success!";
+    } else if (type === "error") {
       brandColor = "red";
       alertIcon = errorIcon;
-      if(!title) title = "Oops!";
-    }
-    else if (type === "info") {
+      if (!title) title = "Oops!";
+    } else if (type === "info") {
       brandColor = "grey";
       alertIcon = infoIcon;
-      if(!title) title = "Info!";
-    }
-    else if (type === "warn") {
+      if (!title) title = "Info!";
+    } else if (type === "warn") {
       brandColor = "orange";
       alertIcon = warnIcon;
-      if(!title) title = "Info!";
+      if (!title) title = "Info!";
     }
 
-    alertIcon =  alertIcon.replace(/{fillColor}/g, brandColor);
+    alertIcon = alertIcon.replace(/{fillColor}/g, brandColor);
 
     alertInstance.style.setProperty("--brand-color", brandColor);
-
 
     dispatch("ready");
 
@@ -100,14 +94,20 @@
       onAction(detail);
     dispatch("done", detail);
   };
+
+  const handleClick = function () {
+    if(knowMoreUrl && knowMoreUrl.startsWith("https://")) {
+      window.location.href = knowMoreUrl;
+    }
+  }
 </script>
 
 <svelte:options tag="alert-component" />
 
 <div
   class="alert slide"
-  class:left={$pos.left}
-  class:right={$pos.right}
+  class:left="{$pos.left}"
+  class:right="{$pos.right}"
   bind:this="{alertInstance}"
 >
   <div class="header"></div>
@@ -116,7 +116,12 @@
     {@html alertIcon}
   </div>
 
-  <div class="alert-container" class:shrink="{closeLabel !== 'X'}">
+  <div 
+    class="alert-container" 
+    class:shrink="{closeLabel !== 'X'}"
+    on:click={handleClick}
+    class:hasLink={knowMoreUrl}
+    >
     <div class="alert-title">
       <p>{title}</p>
     </div>
@@ -174,8 +179,6 @@
     animation: slide-out-left 2s;
   }
 
-
-
   .slide.right {
     animation: slide-in 2s;
   }
@@ -199,6 +202,9 @@
 
   .alert-title > p {
     width: 200px;
+  }
+  .hasLink {
+    cursor: pointer;
   }
 
   .alert-body {
@@ -289,7 +295,6 @@
   .shrink {
     width: 150px;
   }
-
 
   @media screen and (max-device-width: 640px) {
     .alert {

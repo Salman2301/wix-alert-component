@@ -105,6 +105,9 @@ Other methods are as follow
 
    // brandColor set any hex, rgb color, refeclt the border
    brandColor:"#4BB543",
+
+   // redirect url on title or message clicked!
+   knowMoreUrl: "https://salman2301.com"
   }
 
 ```
@@ -162,12 +165,11 @@ $w("#dataset").onReady(() => {
 
 # Todo: V2
 
-- [ ] Ability to set the top and bottom position only on mobile mode
 - [ ] Ability to add link in message or allow html for message
-- [ ] Callback also need to fire .on() the webcomponent
-- [ ] Fix Animation on left side alerts
 - [ ] Generate the code, using wix site
-- [ ] On Click of a message body, redirect to the url
+- [x] On Click of a message body, redirect to the url
+- [x] Callback also need to fire .on() the webcomponent
+- [x] Fix Animation on left side alerts
 - [x] Fix Animation Fly in and Fly out!
 - [x] Icon for type of message
 - [x] Refactor the code

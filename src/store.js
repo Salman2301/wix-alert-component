@@ -6,7 +6,6 @@ export const position = writable("bottom-right");
 let currAlertId = 0;
 export const alertId = () => String(currAlertId++);
 export const pos = derived(position, $position=> {
-	// updatePositionClass($position) 
 	const [pos1, pos2] = $position.split("-");
 
 	return {

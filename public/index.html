@@ -48,7 +48,7 @@
 				title: "Hello",
 				type:"success",
 				position: "bottom-right"
-			}, null, 4
+			}, null, 2
 		)
 		
 		$btn.addEventListener("click" , function() {
@@ -57,6 +57,7 @@
 
 		setTimeout(()=>{
 			$btn.click();
+			$alert.$on("done",function(e){console.log({done: e})}  );
 		}, 2000);
 	</script>
 </body>
