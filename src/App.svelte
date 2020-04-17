@@ -1,5 +1,6 @@
 <script>
   import { alertsStore, addNewAlert, position } from "./store.js";
+  import {pos} from "./store.js";
   import Alert from "./Alert.svelte";
 
   // TODO: rename a better attribute and function name
@@ -9,28 +10,11 @@
 
   let availPos = ["top-left", "top-right", "bottom-left", "bottom-right"];
 
-  let posTop = false;
-  let posBottom = false;
-  let posLeft = false;
-  let posRight = false;
-
   $: if (setPosition) setPosition(setposition);
   $: if (newalert) newAlert(newalert);
 
-  const isValidPositon = pos => availPos.indexOf(pos) > -1;
-
-  position.subscribe(updatePositionClass);
-
-  function updatePositionClass() {
-    const [pos1, pos2] = $position.split("-");
-
-    posTop = pos1 === "top";
-    posBottom = pos1 === "bottom";
-
-    posLeft = pos2 === "left";
-    posRight = pos2 === "right";
-  }
-
+  const isValidPositon = newPos => availPos.indexOf(newPos) > -1;
+  
   export const newAlert = (data = {}) => {   
     if (!data.message) {
       throw new Error(
@@ -38,15 +22,13 @@
       );
     }
 
-    const { message, position: pos } = data; //position
+    const { message, position: newPos } = data; //position
 
-    if (pos) {
-      setPosition(pos);
+    if (newPos) {
+      setPosition(newPos);
       delete data.position;
     }
 
-    // pass the current position to Alert component
-    // data.pos = $position;
 
     addNewAlert(data);
      if (typeof data === "string") {
@@ -56,15 +38,15 @@
       
   };
 
-  export function setPosition(pos) {
-    if (!isValidPositon(pos)) {
+  export function setPosition(newPos) {
+    if (!isValidPositon(newPos)) {
       console.error(
         "Not a vaild position!, available positions : " + availPos.join(", ")
       );
       return;
     }
-    $position = pos;
-    updatePositionClass();
+    position.set(newPos);
+    // updatePositionClass();
   }
 
   export function handleDone(e) {
@@ -83,13 +65,12 @@
 </svelte:head>
 
 <svelte:options tag="alerts-component" />
-
 <div
   class="alerts bottom right"
-  class:top="{posTop}"
-  class:bottom="{posBottom}"
-  class:left="{posLeft}"
-  class:right="{posRight}"
+  class:top={$pos.top}
+  class:bottom={$pos.bottom}
+  class:left={$pos.left}
+  class:right={$pos.right}
 >
 
   {#each $alertsStore as alert (alert.id)}

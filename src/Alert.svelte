@@ -8,6 +8,8 @@
     errorIcon,
     closeIcon
   } from "./icons/all.js";
+  import { position } from "./store.js";
+
 
   const component = get_current_component();
   const svelteDispatch = createEventDispatcher();
@@ -31,7 +33,7 @@
   export let style = "";
   export let onClose;
   export let onAction;
-  export let pos = "bottom-right"; //
+
   // variable
   let alertInstance;
   const perSec = 1000;
@@ -159,6 +161,7 @@
     box-shadow: 4px 4px 20px 0 rgba(0, 0, 0, 0.25);
     display: flex;
     margin-bottom: 10px;
+    background: white;
     animation: slide-in 2s;
   }
 
@@ -181,7 +184,6 @@
 
   .alert-body {
     display: flex;
-    background: white;
     color: #767676;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -243,7 +245,6 @@
     border: 0px;
     font-size: 16px;
     cursor: pointer;
-    background: #fff;
   }
 
   .isBtnAction {
