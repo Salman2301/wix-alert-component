@@ -77,6 +77,13 @@
     <alert-component {...alert} on:done="{handleDone}"></alert-component>
   {/each}
 
+  {#if $alertsStore.length > 0}
+    <div class="made-by" 
+     class:left={$pos.left}
+      class:right={$pos.right}>
+      <p>by <a href="https://www.salman2301.com" target="_blank">Salman2301</a></p>
+    </div>
+  {/if}
 </div>
 
 <style>
@@ -84,7 +91,6 @@
     position: fixed;
     width: 300px;
     z-index: 1000;
-    background-color: white;
   }
 
   .top {
@@ -102,6 +108,30 @@
   .right {
     right: 50px;
   }
+
+  .made-by {
+    margin: 0px;
+    color: #333;
+    font-family: 'Roboto';
+    font-size: 12px;
+    text-align: end;
+  }
+  .made-by.left {
+    text-align: start;
+  }
+  .made-by.right {
+    text-align: end;
+  }
+
+  .made-by p {
+    margin: 0px;
+  }
+  a {
+    text-decoration: none;
+    color: #D43C2C;
+  }
+
+  
 
   @media screen and (max-device-width: 640px) {
     .alerts {
