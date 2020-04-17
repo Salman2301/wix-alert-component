@@ -8,7 +8,7 @@
     errorIcon,
     closeIcon
   } from "./icons/all.js";
-  import { position } from "./store.js";
+  import { position, pos } from "./store.js";
 
 
   const component = get_current_component();
@@ -106,6 +106,8 @@
 
 <div
   class="alert slide"
+  class:left={$pos.left}
+  class:right={$pos.right}
   bind:this="{alertInstance}"
 >
   <div class="header"></div>
@@ -162,7 +164,24 @@
     display: flex;
     margin-bottom: 10px;
     background: white;
+  }
+
+  .right {
+    animation: slide-out 2s;
+  }
+
+  .left {
+    animation: slide-out-left 2s;
+  }
+
+
+
+  .slide.right {
     animation: slide-in 2s;
+  }
+
+  .slide.left {
+    animation: slide-in-left 2s;
   }
 
   .alert-container {
@@ -271,9 +290,6 @@
     width: 150px;
   }
 
-  .slide {
-    animation: slide-out 2s;
-  }
 
   @media screen and (max-device-width: 640px) {
     .alert {
@@ -291,7 +307,7 @@
     }
   }
 
-  @keyframes slide-in {
+  @keyframes slide-out {
     from {
       transform: translateX(0);
     }
@@ -300,9 +316,27 @@
     }
   }
 
-  @keyframes slide-out {
+  @keyframes slide-in {
     from {
       transform: translateX(100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-out-left {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      transform: translateX(-100%);
     }
     to {
       transform: translateX(0);
