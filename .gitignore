@@ -1,4 +1,7 @@
+# nodemodules folder
 /node_modules/
+
+# ignore build file
 /public/build/
 
 .DS_Store
