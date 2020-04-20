@@ -18,7 +18,7 @@ Follow the steps below to setup web component in wix site
 6. Click on Select on of your file
 7. If you don't have any file, it will show 'Create a new file' it will create a folder custom element
 8. Open the `Public/custom-elements` in the `Site Structure` and create a new file, with a name `Snackbar.js`
-9. Copy the code from this repo [build/index.js](build/index.js)
+9. Copy the code from this repo [dist/index.js](dist/index.js)
 10. Paste the code in the `Snackbar.js` file
 11. And then go to the page, where you drag and drop the custom element
 12. Change the Tag Name field to `alerts-component`
@@ -32,7 +32,7 @@ file is hosted in [jsdelivr](https://www.jsdelivr.com/)
 
 Paste the below link and continue from step 12
 
-[https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/build/index.js](https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/build/index.js)
+[https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/dist/index.js](https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/dist/index.js)
 
 ## Available Atrributes
 
