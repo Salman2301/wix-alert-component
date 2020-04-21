@@ -25,17 +25,17 @@
   let availPos = ["top-left", "top-right", "bottom-left", "bottom-right"];
 
   $: if (setPosition) setPosition(setposition);
-  $: if (newalert) newAlert(newalert);
+  $: if (newalert) newAlert(JSON.parse(newalert));
 
   const isValidPositon = newPos => availPos.indexOf(newPos) > -1;
 
   export const newAlert = (data = {}) => {
+
     if (!data.message) {
       throw new Error(
         "message is required to alert the user. newAlert({message:'string'})"
       );
     }
-
     const { message, position: newPos } = data; //position
 
     if (newPos) {
