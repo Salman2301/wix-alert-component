@@ -2,9 +2,9 @@
   "name": "wix-alert-component",
   "version": "1.5.0",
   "scripts": {
+    "start": "sirv public",
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "start": "sirv public",
     "dist": "rollup -c -o dist/index.js"
   },
   "devDependencies": {

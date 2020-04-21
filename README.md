@@ -43,7 +43,7 @@ Paste the below link and continue from step 12
 
 position demo:
 
-![positions](/readmeDoc/position.gif)
+![positions](/screenshot/position.gif)
 
 Setposition allows you choose any corner of the website to show your alert. for desktop by default set to `bottom-right` and avaiable position are as follows
 
@@ -61,7 +61,7 @@ By default the alert will be center horizontally for mobile,
 
 Responsive Demo:
 
-![responsive](/readmeDoc/responsive.gif)
+![responsive](/screenshot/responsive.gif)
 
 ```js
 // example wix code
