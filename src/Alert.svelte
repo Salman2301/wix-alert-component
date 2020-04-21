@@ -27,7 +27,7 @@
   export let autoClose = true;
   export let closeLabel = "X";
   export let wait = 8; // wait for 4 sec before autoClose
-  export let brandColor = "red";
+  export let brandColor = "";
   export let style = "";
   export let onClose;
   export let onAction;
@@ -41,19 +41,19 @@
   onMount(async () => {
 
     if (type === "success") {
-      brandColor = "#4BB543";
+      if (!brandColor) brandColor = "#4BB543";
       alertIcon = successIcon;
       if (!title) title = "Success!";
     } else if (type === "error") {
-      brandColor = "red";
+      if (!brandColor) brandColor = "red";
       alertIcon = errorIcon;
       if (!title) title = "Oops!";
     } else if (type === "info") {
-      brandColor = "grey";
+      if (!brandColor) brandColor = "grey";
       alertIcon = infoIcon;
       if (!title) title = "Info!";
     } else if (type === "warn") {
-      brandColor = "orange";
+      if (!brandColor) brandColor = "orange";
       alertIcon = warnIcon;
       if (!title) title = "Info!";
     }
