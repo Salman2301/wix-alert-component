@@ -79,7 +79,7 @@ Other methods are as follow
 
   {
     // Optional changed based on type by Defalt it's "Oops" which is for Error type. use this to override.
-   title : "Oops"
+   title : "Oops",
     //  required field, message display in the alert
    message : "Alert message!.",
 
