@@ -78,6 +78,8 @@ Other methods are as follow
 ```js
 
   {
+    // Optional changed based on type by Defalt it's "Oops" which is for Error type. use this to override.
+   title : "Oops"
     //  required field, message display in the alert
    message : "Alert message!.",
 
@@ -165,8 +167,9 @@ $w("#dataset").onReady(() => {
 
 # Todo: V2
 
-- [ ] Ability to add link in message or allow html for message
-- [ ] Generate the code, using wix site
+- [x] Ability to add link in message
+- [ ] Allow html for message
+- [x] Generate the code, using wix site
 - [x] On Click of a message body, redirect to the url
 - [x] Callback also need to fire .on() the webcomponent
 - [x] Fix Animation on left side alerts
