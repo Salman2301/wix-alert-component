@@ -8,7 +8,61 @@ Live demo link: [https://www.test.salman2301.com/alert-web-component](https://ww
 
 # Instruction
 
-Follow the steps below to setup web component in wix site
+There are different way we can use custom element in Wix Site.
+I am showing three different way to use it.
+The easy way is to use Wix Block with CDN and you can skip the below 2.
+
+ - Wix Block + CDN
+ - Public JS file
+ - CDN
+
+### Using Wix Block With CDN
+Easy way is to use Custom elment in Wix site is by using with Wix Block. It provid some level of IDE support.
+
+1. Click on this [link](http://wix.to/QcCAC7M). Follow the step to Install the Wix Block on any Wix site.
+2. Drag and Drop the Widget or Wix Block.
+4. Change the element Id to `widgetAlert` via the properties panel.
+5. Drag and Drop a Custom element under `Add Element/Embed/Custom Element` and change the Id to `CustomAlert` via properties panel.
+6. Click on the Custom element and select Change source.
+7. Select `Server URL` paste this URL `https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/dist/index.js`
+8. Set the Tag Name to `alerts-component`
+9. Add the following Code in the page sections.
+
+```
+// page code.js
+$w.onReady(function () {
+  // This step is needed to let the Wix Block select the Custom element
+	$w('#widgetAlert').setCustomElement($w('#CustomAlert'));
+  
+  // This will show Warning Alert 
+	$w('#widgetAlert').alert("This is a warning message." )
+});
+
+```
+
+Note:
+ for the `alert` method, You can pass a string or object
+```
+  // using string
+	$w('#widgetAlert').alert("This is a alert message." )
+```
+Is same as this
+```
+  // using object
+	$w('#widgetAlert').alert({ message: "This is a alert message." })
+```
+
+You can also pass more options like title, type of alert, wait time, style using the object method
+
+Checkout below [attribute `new alert`](https://github.com/Salman2301/wix-alert-component#attirbute-newalert)
+  
+```
+  $w('#widgetAlert').alert({ title: "Hello", message: "Welcom to the site." })
+```
+
+### Without Using Wix Block or CDN.
+
+Follow the steps below to setup web component in wix site using `public`js file.
 
 1. Open the editor
 2. Turn on [dev mode](https://support.wix.com/en/article/about-corvid-by-wix#to-enable-corvid-on-your-site)
@@ -24,7 +78,7 @@ Follow the steps below to setup web component in wix site
 12. Change the Tag Name field to `alerts-component`
 13. Drag the element to (Header or Footer) or check "Show on all page" to set the element globally
 
-**Using Server URL**
+### Using CDN
 
 you can skip 5-11 steps by selecting the server URL option after point 4,
 
@@ -33,6 +87,9 @@ file is hosted in [jsdelivr](https://www.jsdelivr.com/)
 Paste the below link and continue from step 12
 
 [https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/dist/index.js](https://cdn.jsdelivr.net/gh/salman2301/wix-alert-component@master/dist/index.js)
+
+
+---
 
 ## Available Atrributes
 
@@ -115,7 +172,12 @@ Other methods are as follow
 ```
 
 ```js
-// example wix code
+// Using Wix Block
+$w("widgetAlert").alert("hello world!");
+
+// OR
+
+// Using Custom element without Wix Block
 $w("#CustomElement1").setAttribute(
   "newalert",
   JSON.stringify({ message: "hello world!" })
@@ -144,6 +206,11 @@ function handleAction(e) {
   // save your cookie	:)
 }
 
+
+// Using Wix Block
+$w("widgetAlert").alert(alertPrivacy);
+
+// Without Wix Block
 $w("#CustomElement1").setAttribute("newalert", JSON.stringify(alertPrivacy));
 
 ```
@@ -160,10 +227,20 @@ let alertError = {
 
 $w("#dataset").onReady(() => {
   $w("#dataset").onError(() => {
+
+    // Using Wix Block
+    $w("widgetAlert").alert(alertError);
+
+    // Without Wix Block
     $w("#CustomElement1").setAttribute("newalert", JSON.stringify(alertError));
   });
 });
 ```
+
+## Design Update
+Version 2 has better design Update
+
+![Different type of Errors](screenshot/type%20of%20errors.jpg)
 
 # Todo: V2
 
